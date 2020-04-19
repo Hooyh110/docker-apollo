@@ -1,0 +1,34 @@
+version: "3"
+services:
+  apollo-configservice:
+    container_name: apollo-configservice
+    build: apollo-configservice/
+    image: apollo-configservice
+    ports:
+      - 8080:8080
+    volumes:
+      - "~/data/100003171:/opt/logs/100003171"
+    environment:
+      - spring_datasource_url=jdbc:mysql://172.31.252.136:3306/ApolloConfigDB_TEST?characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+      - spring_datasource_username=apollo
+      - spring_datasource_password=77ZE42xdm0KhtsHnhDv2NC3C5Gys
+      - eureka.instance.ip-address=172.31.252.136
+    restart: always
+
+  apollo-adminservice:
+    container_name: apollo-adminservice
+    build: apollo-adminservice/
+    image: apollo-adminservice
+    ports:
+      - 8090:8090
+    volumes:
+      - "~/data/100003172:/opt/logs/100003172"
+    environment:
+      - spring_datasource_url=jdbc:mysql://172.31.252.136:3306/ApolloConfigDB_TEST?characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false
+      - spring_datasource_username=apollo
+      - spring_datasource_password=77ZE42xdm0KhtsHnhDv2NC3C5Gys
+      - eureka.instance.ip-address=172.31.0.147
+    depends_on:
+      - apollo-configservice
+
+    restart: always

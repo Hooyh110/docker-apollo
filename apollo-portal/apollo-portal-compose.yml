@@ -1,0 +1,18 @@
+version: "3"
+services:
+  apollo-portal:
+    container_name: apollo-portal
+    build: apollo-portal/
+    image: apollo-portal
+    ports:
+      - 8070:8070
+    volumes:
+      - "${APOLLO_LOGS_DIR}/docker/apollo/logs/100003173:/opt/logs/100003173"
+      - "${APOLLO_CONFIG}:/apollo-portal/config/apollo-env.properties"
+    environment:
+      - spring_datasource_url=jdbc:mysql://${DB_HOST}:3306/ApolloPortalDB?characterEncoding=utf8
+      - spring_datasource_username=${DB_USER}
+      - spring_datasource_password=${DB_PASSWORD}
+
+
+    restart: always
