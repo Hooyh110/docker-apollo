@@ -115,3 +115,5 @@ eureka:
 ```
 eureka.instance.ip-address=内网地址
 ```
+zip文件直接在release中下载
+
