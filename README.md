@@ -1,6 +1,23 @@
 # Docker Ctrip Apollo.
 使用 Docker 部署携程 Apollo，为提高扩展性拆为 3 个 Docker Image。
 
+
+
+启动前请先修改.env文件
+修改对应的变量
+
+注意：apollo-portal/config/apollo-env.properties 此文件中的IP请替换成Apollo部署的节点IP
+```
+cat apollo-portal/config/apollo-env.properties
+local.meta=http://node_IP:8080
+dev.meta=http://node_IP:8080
+fat.meta=http://node_IP:8080
+uat.meta=http://node_IP:8080
+lpt.meta=http://node_IP:8080
+pro.meta=http://node_IP:8080
+```
+
+================================================
 #### 部署说明：
 
 1. 修改官方项目 apollo-configservice 、apollo-adminservice 项目下 application.yml 配置文件，此处可参考[官网文档](https://github.com/ctripcorp/apollo/wiki/分布式部署指南#14网络策略)：
